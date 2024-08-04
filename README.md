@@ -74,8 +74,6 @@ hello-world
 - main.js: the entrypoint script
 - project.json: project information
 
-```
-
 # Examples
 
 Here at 'examples' folder you can find a few Akumos project examples.
