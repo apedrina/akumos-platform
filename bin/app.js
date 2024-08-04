@@ -140,8 +140,19 @@ class App {
                 console.log(`[WARN] app: template.path is empty or null, ${t}`)
                 return;
 
+            
+            }
+            if (t.template == null){
+                console.log(`[WARN] app: template.template is empty or null, ${t}`)
+                return;
+
             }
             let i = t.path.indexOf('?')
+            if (i == -1){
+                console.log(`[WARN] app: invalid template.path (missing '?'), ${t.path}`)
+                return;
+
+            }
             let p = t.path.substring(0, i).replaceAll('.', path.sep)
             let f = t.path.substring(i + 1)
             p = p + path.sep + f
@@ -156,6 +167,7 @@ class App {
             }
 
             console.log(`[INFO]  app: saving template to: ${path2Save}`)
+            console.log(`[INFO]  app: t.template: ${t.template}`)
             fs.writeFileSync(path2Save, t.template)
 
         } catch (err) {

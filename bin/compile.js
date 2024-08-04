@@ -38,13 +38,13 @@ function getDirectories(srcpath) {
         project = JSON.parse(project)
         app.n = (project.namespace)
 
-        console.log(`[INFO]  compile: reading main.js: ${'.' + path.sep + 'main.js'}\n`)
+        console.log(`[INFO]  compile: reading main.js: ${'.' + path.sep + 'main.js'}`)
         try {
             var mainJs = fs.readFileSync('.' + path.sep + 'main.js', 'utf8')
 
             eval(mainJs)
 
-            console.log(`[INFO]  compile: 'main.js' evaluation finished!\n`)
+            console.log(`[INFO]  compile: 'main.js' evaluation finished!`)
 
             if (app.suffix != null) {
                 this.isSuffix = true;
@@ -56,7 +56,7 @@ function getDirectories(srcpath) {
             }
 
         } catch (error) {
-            console.log(`[ERROR] compile: error trying run 'main.js'\n`)
+            console.log(`[ERROR] compile: error trying run 'main.js'`)
             throw error
 
         }
@@ -95,9 +95,9 @@ function getDirectories(srcpath) {
                     console.log(`[INFO]  compile: parsing .js file: ${'.' + path.sep + p}`)
                     var content = fs.readFileSync('.' + path.sep + p, 'utf8')
                     try {
-                        console.log(`[INFO]  compile: evaluating!\n`)
+                        console.log(`[INFO]  compile: evaluating!`)
                         eval(content)
-                        console.log(`[INFO]  compile: script js evaluation finished!\n`)
+                        console.log(`[INFO]  compile: script js evaluation finished!`)
 
                     } catch (error) {
                         console.log(`[ERROR] compile: error running: ${'.' + path.sep + p}`)
@@ -125,10 +125,9 @@ function init() {
     getDirectoriesRecursive('./src')
 
     if (this.after != '') {
-        console.log('[INFO]  compile: running after script!\n')
+        console.log('[INFO]  compile: running after script!')
         
         eval(this.after)
-        console.log('\n')
 
     }
 
