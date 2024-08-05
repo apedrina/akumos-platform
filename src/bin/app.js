@@ -125,13 +125,12 @@ class App {
             return
         }
         let i = v.indexOf('?')
-        console.log(v.substring(0, i))
         let p = v.substring(0, i).replaceAll('.', path.sep)
         let f = v.substring(i + 1)
 
         p = p + path.sep + f
 
-        return fs.readFileSync('.' + path.sep + p).toString()
+        return fs.readFileSync(process.cwd() + path.sep + p).toString()
 
     }
     create(t) {

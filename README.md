@@ -8,7 +8,7 @@ Requirements:
 
 - nodeJs
 
-Clone this repository and run:
+Clone this repository, navigate to 'src' folder and run:
 
 ```bash
 
@@ -73,6 +73,14 @@ hello-world
 - tmpl: template files, could be any extension
 - main.js: the entrypoint script
 - project.json: project information
+
+Now write your scripts at 'src' folder and to compile run:
+
+```bash
+
+akumos cp
+
+```
 
 # Examples
 

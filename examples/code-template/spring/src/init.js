@@ -1,8 +1,11 @@
 (function (app) {
 
+    let config = JSON.parse(app.call('config?commons.json'))
+
+    console.log(config[0])
     let mainClass = new Template()
-    mainClass.path = 'app.src.main.java.com.example.demo?DemoApplicaion.java'
-    mainClass.template = app.call('tmpl.src.main.java.com.example.demo?DemoApplication.java')
+    mainClass.path = `app.src.main.${config[0].package_base}?DemoApplicaion.java`
+    mainClass.template = app.call('tmpl.src.main.java?DemoApplication.java')
 
     app.create(mainClass)
 
@@ -19,8 +22,8 @@
     app.create(appProperties)
 
     let mainTestClass = new Template()
-    mainTestClass.path = 'app.src.test.java.com.example.demo?DemoApplicaionTests.java'
-    mainTestClass.template = app.call('tmpl.src.test.java.com.example.demo?DemoApplicationTests.java')
+    mainTestClass.path = `app.src.test.${config[0].package_base}?DemoApplicaionTests.java`
+    mainTestClass.template = app.call('tmpl.src.test.java?DemoApplicationTests.java')
 
     app.create(mainTestClass)
 
