@@ -6,6 +6,8 @@
     let mainClass = new Template()
     mainClass.path = `app.src.main.${config[0].package_base}?DemoApplicaion.java`
     mainClass.template = app.call('tmpl.src.main.java?DemoApplication.java')
+    mainClass.map.set('{{package}}', config[0].package_base)
+    mainClass.bind()
 
     app.create(mainClass)
 
@@ -24,6 +26,8 @@
     let mainTestClass = new Template()
     mainTestClass.path = `app.src.test.${config[0].package_base}?DemoApplicaionTests.java`
     mainTestClass.template = app.call('tmpl.src.test.java?DemoApplicationTests.java')
+    mainTestClass.map.set('{{package}}', config[0].package_base)
+    mainTestClass.bind()
 
     app.create(mainTestClass)
 
