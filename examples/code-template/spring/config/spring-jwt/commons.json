@@ -1,0 +1,8 @@
+{
+    "artifactId":"springboot-jwt",
+    "version":"1.0-SNAPSHOT",
+    "name":"Archetype - springboot-jwt",
+    "package_base":"io.github.apedrina",
+    "compilerSource":"11",
+    "compilerTarget":"11"
+}

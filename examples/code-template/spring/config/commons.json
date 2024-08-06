@@ -1,8 +1,0 @@
-[{
-    "artifactId":"spring-basic",
-    "groupId":"io.github.apedrina",
-    "version":"1.0.0",
-    "name":"spring-basic",
-    "description":"Akumos spring project example",
-    "package_base":"io.github.apedrina"
-}]

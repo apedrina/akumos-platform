@@ -74,7 +74,7 @@ const walk = function (dir, filters, m) {
 class App {
     after;
     suffix;
-    scripts = new Map();
+    scripts = [];
     n;
     templates = [];
     regsConfig = new Map()

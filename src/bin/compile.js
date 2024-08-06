@@ -7,8 +7,9 @@ const { Template, App } = require('./app.js')
 var isSuffix = false;
 var isBefore = false;
 var isAfter = false;
+var isScripts = false
 var after = ''
-const app = new App() 
+const app = new App()
 
 function copyApp2Build() {
     try {
@@ -46,6 +47,9 @@ function getDirectories(srcpath) {
 
             console.log(`[INFO]  compile: 'main.js' evaluation finished!`)
 
+            if (app.scripts != null) {
+                this.isScripts = true
+            }
             if (app.suffix != null) {
                 this.isSuffix = true;
 
@@ -66,6 +70,28 @@ function getDirectories(srcpath) {
             .filter(p => {
                 var stat = fs.statSync(p);
                 if (stat && !stat.isDirectory()) {
+                    if (this.isScripts) {
+                        app.scripts.forEach(s => {
+                            let pathFile = p.replace(process.cwd(), '')
+                            let v = s
+                            let i = v.indexOf('?')
+
+                            let p2 = v.substring(0, i).replaceAll('.', path.sep)
+                            let f = v.substring(i + 1)
+
+                            console.log(`[INFO]  compile: ${pathFile} === ${p2}`)
+                            p2 = p2 + path.sep + f
+                            if (pathFile === p2) {
+                                console.log(`[INFO]  compile: running script!`)
+
+                                eval(fs.readFileSync('.' + path.sep + p, 'utf8'))
+
+                                return fs.statSync(p).isDirectory()
+                            }
+
+                        })
+
+                    }
                     if (this.isSuffix) {
                         if (!path.basename(p).startsWith(app.suffix)) {
                             console.log(`[WARNING] compile: skipping ${p}, suffix: ${app.suffix}`)
@@ -84,7 +110,7 @@ function getDirectories(srcpath) {
                         p2 = p2 + path.sep + f
                         if (pathFile === p2) {
                             this.after = fs.readFileSync('.' + path.sep + p, 'utf8')
-                            
+
                             console.log(`[WARNING] compile: skipping ${p}, after: ${app.after}`)
 
                             this.isAfter = false
@@ -126,7 +152,7 @@ function init() {
 
     if (this.after != '') {
         console.log('[INFO]  compile: running after script!')
-        
+
         eval(this.after)
 
     }

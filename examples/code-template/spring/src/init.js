@@ -1,35 +1,30 @@
 (function (app) {
 
-    let config = JSON.parse(app.call('config?commons.json'))
+    if (app.params.get('name') === 'spring-jwt') {
+        console.log('init spring-jwt pre-compile...')
 
-    console.log(config[0])
-    let mainClass = new Template()
-    mainClass.path = `app.src.main.${config[0].package_base}?DemoApplicaion.java`
-    mainClass.template = app.call('tmpl.src.main.java?DemoApplication.java')
-    mainClass.map.set('{{package}}', config[0].package_base)
-    mainClass.bind()
+        let config = JSON.parse(app.call('config.spring-jwt?commons.json'))
 
-    app.create(mainClass)
+        let rootPom = new Template()
+        rootPom.path = 'app.spring-jwt?pom.xml'
+        rootPom.template = app.call('tmpl.spring?pom.xml')
 
-    let pom = new Template()
-    pom.path = 'app?pom.xml'
-    pom.template = app.call('tmpl?pom.xml')
+        for (var k in config) {
+            rootPom.map.set(`{{${k}}}`, config[k])
 
-    app.create(pom)
+        }
+        rootPom.bind()
 
-    let appProperties = new Template()
-    appProperties.path = 'app.src.main.resources?application.properties'
-    appProperties.template = app.call('tmpl.src.main.resources?application.properties')
+        app.create(rootPom)
 
-    app.create(appProperties)
+        let archPom = new Template()
+        archPom.path = 'app.spring-jwt.src.main.resources.archetype-resources?pom.xml'
+        archPom.template = app.call('tmpl.spring.src.main.resources.archetype-resources?pom.xml')
+        archPom.map.set('{{dependencies}}', app.call('tmpl.spring.jwt?dependencies.xml'))
+        archPom.bind()
 
-    let mainTestClass = new Template()
-    mainTestClass.path = `app.src.test.${config[0].package_base}?DemoApplicaionTests.java`
-    mainTestClass.template = app.call('tmpl.src.test.java?DemoApplicationTests.java')
-    mainTestClass.map.set('{{package}}', config[0].package_base)
-    mainTestClass.bind()
+        app.create(archPom)
 
-    app.create(mainTestClass)
-
+    }
 
 })(app)
