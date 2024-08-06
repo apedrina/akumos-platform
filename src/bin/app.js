@@ -4,19 +4,25 @@ const process = require('process')
 
 class Template {
     map = new Map();
+    toNamespacedPath;
     path;
     template;
+    description;
     name;
 
     get map() { return this.map }
     get path() { return this.path }
     get template() { return this.template }
     get name() { return this.name }
+    get description() { return this.description }
+    get namespace() { return this.namespace }
 
     set map(v) { this.map = v }
     set path(v) { this.path = v }
     set template(v) { this.template = v }
     set name(v) { this.name = v }
+    set description(v) { this.description = v }
+    set namespace(v) { this.namespace = v }
 
     bind() {
         this.map.forEach((v, k, m) => {
@@ -66,7 +72,7 @@ const walk = function (dir, filters, m) {
 
         } else {
             exec(file, filters, m)
-        
+
         }
     });
 }
@@ -105,7 +111,7 @@ class App {
     set src(v) { this.regsScr = v }
     set regs(V) { this.regs = v }
 
-    js(v, params) {
+    js(v, app, params) {
         if (!v.startsWith('libs')) {
             return
         }
@@ -115,7 +121,6 @@ class App {
         let f = v.substring(i + 1)
 
         p = p + path.sep + f
-        var param = params
 
         return eval(fs.readFileSync('.' + path.sep + p).toString())
 
@@ -139,15 +144,15 @@ class App {
                 console.log(`[WARN] app: template.path is empty or null, ${t}`)
                 return;
 
-            
+
             }
-            if (t.template == null){
+            if (t.template == null) {
                 console.log(`[WARN] app: template.template is empty or null, ${t}`)
                 return;
 
             }
             let i = t.path.indexOf('?')
-            if (i == -1){
+            if (i == -1) {
                 console.log(`[WARN] app: invalid template.path (missing '?'), ${t.path}`)
                 return;
 

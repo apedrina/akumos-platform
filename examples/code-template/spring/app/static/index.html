@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-br" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Akumos Platform - Web.</title>
+
+    <!-- Principal CSS do Bootstrap -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/highlight-in-textarea.css" rel="stylesheet">
+    <script src="dist/js/highlight-in-textarea.js"></script>
+    <script>
+
+        function get() {
+            var param = document.getElementById('inputSearchButton').value
+            if (param === "") {
+                param = 'empty'
+            }
+
+            fetch("http://localhost:8080/projects?namespace=" + param)
+                .then((response) => response.text())
+                .then((text) => {
+                    var elem = document.getElementById('namespaces');
+                    elem.innerHTML = text;
+                });
+        }
+
+        function create() {
+            let param = document.getElementById('inputCreateButton')
+            if (window.confirm("Do you like create a new namespace: " + param.value)) {
+                if (param.value === '' || param.value === undefined) {
+                    var elem = document.getElementById('compileResult');
+                    elem.innerHTML = "Empty namespace not allowed!";
+                } else {
+                    fetch("http://localhost:8080/projects/create?namespace=" + param.value)
+                        .then((response) => response.text())
+                        .then((text) => {
+                            var elem = document.getElementById('compileResult');
+                            elem.innerHTML = text;
+
+                        }).then(() => {
+                            get('empty')
+                        });
+                }
+
+            } else {
+                var elem = document.getElementById('compileResult');
+                elem.innerHTML = "New namespace creating canceled!";
+
+            }
+
+
+        }
+
+        function compile(namespace) {
+            if (window.confirm("Do you like compile the namespace: " + namespace + "?")) {
+                fetch("http://localhost:8080/projects/compile?namespace=" + namespace)
+                    .then((response) => response.text())
+                    .then((text) => {
+                        var elem = document.getElementById('compileResult')
+                        elem.innerHTML = text;
+                    });
+            } else {
+                var elem = document.getElementById('compileResult')
+                elem.innerHTML = 'Compiling ' + namespace + ' aborted!';
+            }
+
+        }
+
+        function debug(namespace) {
+            if (window.confirm("Do you like compile the namespace: " + namespace + "?")) {
+                fetch("http://localhost:8080/projects/debug?namespace=" + namespace)
+                    .then((response) => response.text())
+                    .then((text) => {
+                        var elem = document.getElementById('compileResult')
+                        elem.innerHTML = text;
+                    });
+            } else {
+                var elem = document.getElementById('compileResult')
+                elem.innerHTML = 'Compiling ' + namespace + ' aborted!';
+            }
+
+        }
+    </script>
+
+
+</head>
+
+<body class="d-flex flex-column h-100">
+
+<header>
+    <!-- Navbar fixa -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Akumos Platform</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><span class="sr-only">dashboard</span></a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+            </form>
+        </div>
+    </nav>
+</header>
+
+<div class="modal fade" id="akumosModal" tabindex="-1" role="dialog" aria-labelledby="akumosModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="akumosModalLabel">Console Results</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="compileResult">
+                Wait the compiling process...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Começa o conteúdo da página -->
+<main role="main" class="flex-shrink-0">
+    <br><br>
+    <div class="container">
+        <br>
+        <span style="font-size:12px" class="mt-4">workspace: app/workspace</span>
+        <br><br>
+        <div class="row g-3">
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="inputSearchButton" placeholder="search">
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="get();">
+                    Search namespace
+                </button>
+            </div>
+        </div>
+        <br>
+        <!--<div class="row g-2">
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputCreateButton" placeholder="">
+        </div>
+        <div class="col-sm">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="create();"
+                    data-toggle="modal" data-target="#akumosModal">
+                Create namespace
+            </button>
+        </div>
+    </div>-->
+    </div>
+    <div class="container my-3 p-3 bg-white rounded box-shadow">
+        <!--<h6 class="border-bottom border-gray pb-2 mb-0">Namespaces</h6>-->
+        <br>
+        <div id="namespaces">
+
+        </div>
+        <small class="d-block text-right mt-12">
+        </small>
+    </div>
+</main>
+
+<footer class="footer mt-auto py-3">
+    <div class="container">
+        <span class="text-muted">Akumos Server.</span>
+    </div>
+</footer>
+
+<!-- Principal JavaScript do Bootstrap
+================================================== -->
+<!-- Foi colocado no final para a página carregar mais rápido -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="assets/js/vendor/popper.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+
+<script>
+    fetch("http://localhost:8080/projects?namespace=empty")
+        .then((response) => response.text())
+        .then((text) => {
+            var elem = document.getElementById('namespaces');
+            elem.innerHTML = text;
+        });
+</script>
+
+</body>
+
+</html>

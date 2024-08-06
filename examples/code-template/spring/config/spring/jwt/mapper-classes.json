@@ -1,0 +1,152 @@
+[
+    {
+        "name": "App.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java?App.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java?App.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating App.java file!",
+        "map": [{
+            "{{package}}": "io.github.apedrina"
+        }]
+    },
+    {
+        "name": "OpenApiConfig.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.config?OpenApiConfig.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.config?OpenApiConfig.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating OpenApiConfig.java file!"
+    },
+    {
+        "name": "AuthController.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller?AuthController.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller?AuthController.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating AuthController.java file!"
+    },
+    {
+        "name": "LoginRequest.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.request?LoginRequest.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.request?LoginRequest.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating LoginRequest.java file!"
+    },
+    {
+        "nmae": "SignupRequest.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.request?SignupRequest.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.request?SignupRequest.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating SignupRequest.java file!"
+    },
+    {
+        "name": "JwtResponse.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.response?JwtResponse.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.response?JwtResponse.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating JwtResponse.java file!"
+    },
+    {
+        "name": "MessageResponse.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.response?MessageResponse.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.controller.payload.response?MessageResponse.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating MessageResponse.java file!"
+    },
+    {
+        "name": "ERole.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.model?ERole.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.model?ERole.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating ERole.java file!"
+    },
+    {
+        "name": "Role.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.model?Role.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.model?Role.java",
+        "namespace":"io.github.apedrina",
+        "description": "creating Role.java file!"
+    },
+    {
+        "name": "User.java",
+        "path": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.model?User.java",
+        "template": "",
+        "namespace": "io.github.apedrina",
+        "description": "creating User.java file!"
+    },
+    {
+        "name": "GenericException.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.model.error?GenericException.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.model.error?GenericException.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating GenericException.java file!"
+    },
+    {
+        "name": "RoleRepository.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.repository?RoleRepository.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.repository?RoleRepository.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating RoleRepository.java file!"
+    },
+    {
+        "name": "UserRepository.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.repository?UserRepository.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.repository?UserRepository.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating UserRepository.java file!"
+    },
+    {
+        "name": "WebSecurityConfig.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.security?WebSecurityConfig.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.security?WebSecurityConfig.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating WebSecurityConfig.java file!"
+    },
+    {
+        "name": "AuthEntryPointJwt.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.security.jwt?AuthEntryPointJwt.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.security.jwt?AuthEntryPointJwt.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating AuthEntryPointJwt.java file!"
+    },
+    {
+        "name": "AuthTokenFilter.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.security.jwt?AuthTokenFilter.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.security.jwt?AuthTokenFilter.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating AuthTokenFilter.java file!"
+    },
+    {
+        "name": "JwtUtils.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.security.jwt?JwtUtils.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.security.jwt?JwtUtils.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating JwtUtils.java file!"
+    },
+    {
+        "name": "UserDetailsImpl.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.service?UserDetailsImpl.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.service?UserDetailsImpl.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating UserDetailsImpl.java file!"
+    },
+    {
+        "name": "UserDetailsServiceImpl.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.java.service?UserDetailsServiceImpl.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.java.service?UserDetailsServiceImpl.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating UserDetailsServiceImpl.java file!"
+    },
+    {
+        "name": "application.yaml",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.main.resources?application.yaml",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.main.resources?application.yaml",
+        "namespace": "io.github.apedrina",
+        "description": "creating application.yaml file!"
+    },
+    {
+        "name": "AppTest.java",
+        "path": "app.spring.jwt.src.main.resources.archetype-resources.src.test.java?AppTest.java",
+        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources.src.test.java?AppTest.java",
+        "namespace": "io.github.apedrina",
+        "description": "creating AppTest.java file!"
+    }
+]
