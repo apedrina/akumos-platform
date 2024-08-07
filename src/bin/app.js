@@ -26,13 +26,16 @@ class Template {
 
     bind() {
         this.map.forEach((v, k, m) => {
-            console.log(this.template)
             this.template = this.template.replaceAll(k, v);
 
         });
     }
     addConfig(v) {
-        this.map = new Map(Object.entries(v.props.json), this.map);
+        for (var o in v){
+            this.map = new Map(Object.entries(v[0]), this.map)
+            
+        }
+        
     }
 
 }
@@ -141,19 +144,19 @@ class App {
     create(t) {
         try {
             if (t.path == null) {
-                console.log(`[WARN] app: template.path is empty or null, ${t}`)
+                console.log(`[WARNING] app: template.path is empty or null`)
                 return;
 
 
             }
             if (t.template == null) {
-                console.log(`[WARN] app: template.template is empty or null, ${t}`)
+                console.log(`[WARNING] app: template.template is empty or null`)
                 return;
 
             }
             let i = t.path.indexOf('?')
             if (i == -1) {
-                console.log(`[WARN] app: invalid template.path (missing '?'), ${t.path}`)
+                console.log(`[WARNING] app: invalid template.path (missing '?'), ${t.path}`)
                 return;
 
             }
@@ -171,7 +174,6 @@ class App {
             }
 
             console.log(`[INFO]  app: saving template to: ${path2Save}`)
-            console.log(`[INFO]  app: t.template: ${t.template}`)
             fs.writeFileSync(path2Save, t.template)
 
         } catch (err) {

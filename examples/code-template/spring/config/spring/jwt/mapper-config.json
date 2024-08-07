@@ -7,33 +7,26 @@
         "description": "creating root pom.xml file!",
         "map": [
             {
-                "artifactId":"spring-jwt",
-                "version":"1.0-SNAPSHOT",
-                "name":"Archetype - spring-jwt",
-                "package_base":"io.github.apedrina",
-                "compilerSource":"11",
-                "compilerTarget":"11"
+                "{{groupId}}":"io.github.apedrina.akumos",
+                "{{artifactId}}":"spring-jwt",
+                "{{version}}":"1.0-SNAPSHOT",
+                "{{name}}":"Archetype - spring-jwt",
+                "{{compilerSource}}":"11",
+                "{{compilerTarget}}":"11"
             }
         ]
     },
     {
-        "name": "archetype-metadata.xml",
-        "path": "app.spring.jwt.src.main.resources.META-INF.maven?archetype-metadata.xml",
-        "template": "tmpl.spring.jwt.src.main.resources.META-INF.maven?archetype-metadata.xml",
-        "namespace": "io.github.apedrina",
-        "description": "creating archetype-metadata.xml file!"
-    },
-    {
         "name": "bootstrap.yaml",
-        "path": "app.spring.jwt.src.main.resources.archetype-resources?bootstrap.yaml",
-        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources?bootstrap.yaml",
+        "path": "app.spring.jwt.src.main.resources?bootstrap.yaml",
+        "template": "tmpl.spring.jwt.src.main.resources?bootstrap.yaml",
         "namespace": "io.github.apedrina",
         "description": "creating bootstrap.yaml file!"
     },
     {
         "name": "application.yaml",
-        "path": "app.spring.jwt.src.main.resources.archetype-resources?application.yaml",
-        "template": "tmpl.spring.jwt.src.main.resources.archetype-resources?application.yaml",
+        "path": "app.spring.jwt.src.main.resources?application.yaml",
+        "template": "tmpl.spring.jwt.src.main.resources?application.yaml",
         "namespace": "io.github.apedrina",
         "description": "creating application.yaml file!"
     }

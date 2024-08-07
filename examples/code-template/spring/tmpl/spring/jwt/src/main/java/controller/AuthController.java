@@ -1,4 +1,4 @@
-package io.github.apedrina.auth.controller;
+package {{package}};
 
 import io.github.apedrina.auth.controller.payload.request.LoginRequest;
 import io.github.apedrina.auth.controller.payload.request.SignupRequest;

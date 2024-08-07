@@ -20,9 +20,26 @@ app:
 
 logging:
   level:
-    ROOT: ${LOG_LEVEL:ERROR}
+    ROOT: ERROR
     io.github.apedrina.web: DEBUG
     org.springframework.boot.autoconfigure: ERROR
 
+cors:
+  url: localhost
 
+server:
+  port: 8080
+
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    info:
+      enabled: true
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: health,loggers,httptrace,mappings
 

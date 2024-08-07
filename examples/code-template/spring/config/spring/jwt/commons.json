@@ -1,8 +1,0 @@
-{
-    "artifactId":"spring-jwt",
-    "version":"1.0-SNAPSHOT",
-    "name":"Archetype - spring-jwt",
-    "package_base":"io.github.apedrina",
-    "compilerSource":"11",
-    "compilerTarget":"11"
-}

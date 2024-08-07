@@ -1,0 +1,45 @@
+spring:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:arconedb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.H2Dialect
+
+app:
+  jwtSecret: bezKoderSecretKey
+  jwtExpirationMs: 86400000
+
+logging:
+  level:
+    ROOT: ERROR
+    io.github.apedrina.web: DEBUG
+    org.springframework.boot.autoconfigure: ERROR
+
+cors:
+  url: localhost
+
+server:
+  port: 8080
+
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    info:
+      enabled: true
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: health,loggers,httptrace,mappings
+
