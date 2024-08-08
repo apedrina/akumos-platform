@@ -32,7 +32,7 @@
     {
         "name": "LoginRequest.java",
         "path": "app.spring.jwt.src.main.java.controller.payload.request?LoginRequest.java",
-        "template": "ttmpl.spring.jwt.src.main.java.controller.payload.request?LoginRequest.java",
+        "template": "tmpl.spring.jwt.src.main.java.controller.payload.request?LoginRequest.java",
         "namespace": "io.github.apedrina",
         "description": "creating LoginRequest.java file!",
         "map": [{
@@ -102,7 +102,7 @@
     {
         "name": "GenericException.java",
         "path": "app.spring.jwt.src.main.java.model.error?GenericException.java",
-        "template": "ttmpl.spring.jwt.src.main.java.model.error?GenericException.java",
+        "template": "tmpl.spring.jwt.src.main.java.model.error?GenericException.java",
         "namespace": "io.github.apedrina",
         "description": "creating GenericException.java file!",
         "map": [{
@@ -188,12 +188,5 @@
         "map": [{
             "{{package}}": "io.github.apedrina.service"
         }]
-    },
-    {
-        "name": "AppTest.java",
-        "path": "app.spring.jwt.src.test.java?AppTest.java",
-        "template": "tmpl.spring.jwt.src.test.java?AppTest.java",
-        "namespace": "io.github.apedrina",
-        "description": "creating AppTest.java file!"
     }
 ]
