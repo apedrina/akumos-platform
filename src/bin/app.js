@@ -4,7 +4,6 @@ const process = require('process')
 
 class Template {
     map = new Map();
-    toNamespacedPath;
     path;
     template;
     description;
@@ -175,6 +174,8 @@ class App {
 
             console.log(`[INFO]  app: saving template to: ${path2Save}`)
             fs.writeFileSync(path2Save, t.template)
+            
+            this.templates.push(t)
 
         } catch (err) {
             console.log(`[ERROR] app: error try creating template: ${t}`)
