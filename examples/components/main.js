@@ -1,3 +1,3 @@
 (function(app){
-  console.log('running akumos project...')  
+  console.log('running Akumos Components project...')  
 })(app)
