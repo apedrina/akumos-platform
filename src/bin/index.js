@@ -5,6 +5,22 @@ const { compile } = require('./compile.js');
 const process = require('process')
 const path = require('path')
 
+
+function init() {
+  console.log(`[INFO]  index: cleaning build folder!`)
+  fs.rmSync(process.cwd() + path.sep + 'build', { recursive: true, force: true });
+
+  console.log(`[INFO]  index: creating a new build folder!`)
+  fs.mkdirSync(process.cwd() + path.sep + 'build');
+
+  console.log(`[INFO]  index: reading 'project.json'!`)
+  let project = fs.readFileSync(process.cwd() + path.sep + 'project.json')
+  project = JSON.parse(project)
+  project.namespace = process.cwd()
+  fs.writeFileSync(process.cwd() + path.sep + 'project.json', JSON.stringify(project))
+
+}
+
 yargs.command({
   command: 'cp',
   describe: 'Akumos Project Compile command',
@@ -19,19 +35,8 @@ yargs.command({
   },
   handler(argv) {
     try {
-      console.log(`[INFO]  index: cleaning build folder!`)
-      fs.rmSync(process.cwd() + path.sep + 'build', { recursive: true, force: true });
-
-      console.log(`[INFO]  index: creating a new build folder!`)
-      fs.mkdirSync(process.cwd() + path.sep + 'build');
-
-      console.log(`[INFO]  index: reading 'project.json'!`)
-      let project = fs.readFileSync(process.cwd() + path.sep + 'project.json')
-      project = JSON.parse(project)
-      project.namespace = process.cwd()
-      fs.writeFileSync(process.cwd() + path.sep + 'project.json', JSON.stringify(project))
-
-      compile()
+      init()
+      compile(false)
 
       console.log(`[INFO]  index: compile command fineshed!`)
 
@@ -77,7 +82,13 @@ yargs.command({
       console.log(`[ERROR] index: error trying init an Akumos project: ${err}`);
 
     }
-
+  }
+}).command({
+  command: 'test',
+  describe: 'Akumos Project Test command',
+  handler(argv) {
+    init()
+    compile(true)
   }
 
 })

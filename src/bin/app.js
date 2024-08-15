@@ -33,11 +33,11 @@ class Template {
         });
     }
     addConfig(v) {
-        for (var o in v){
+        for (var o in v) {
             this.map = new Map(Object.entries(v[0]), this.map)
-            
+
         }
-        
+
     }
 
 }
@@ -92,6 +92,7 @@ class App {
     params = new Map()
     regs = new Map()
     objs = new Map()
+    testsFailed = []
 
     get after() { return this.after }
     get suffix() { return this.suffix }
@@ -104,6 +105,7 @@ class App {
     get src() { return this.regsScr }
     get regs() { return this.regs }
     get objs() { return this.objs }
+    get testsFailed() { return this.testsFailed }
 
     set after(v) { this.after = v }
     set suffix(v) { this.suffix = v }
@@ -116,6 +118,7 @@ class App {
     set src(v) { this.regsScr = v }
     set regs(V) { this.regs = v }
     set objs(v) { this.objs = v }
+    set testsFailed(v) { this.testsFailed = v }
 
     uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
@@ -249,6 +252,18 @@ class App {
         return e
     }
 
+    assert(v, msg) {
+        if (v) {
+            console.log(`[INFO]  test: ${msg}`)
+            
+        } else {
+            let errorMsg = `[ERROR]  test: ${msg}`
+            console.log(errorMsg);
+            this.testsFailed.push(errorMsg)
+
+        }
+    }
+
     get(v) {
         if (!v.startsWith('libs')) {
             return
@@ -322,7 +337,7 @@ class App {
 
             console.log(`[INFO]  app: saving template to: ${path2Save}`)
             fs.writeFileSync(path2Save, t.template)
-            
+
             this.templates.push(t)
 
         } catch (err) {

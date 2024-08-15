@@ -4,6 +4,7 @@ const path = require('path');
 const process = require('process')
 const { Template, App } = require('./app.js')
 
+var test = false
 var isSuffix = false;
 var isBefore = false;
 var isAfter = false;
@@ -89,6 +90,7 @@ function getDirectories(srcpath) {
                                 return fs.statSync(p).isDirectory()
                             }
 
+
                         })
 
                     }
@@ -118,17 +120,32 @@ function getDirectories(srcpath) {
                         }
 
                     }
-                    console.log(`[INFO]  compile: parsing .js file: ${'.' + path.sep + p}`)
-                    var content = fs.readFileSync('.' + path.sep + p, 'utf8')
-                    try {
-                        console.log(`[INFO]  compile: evaluating!`)
-                        eval(content)
-                        console.log(`[INFO]  compile: script js evaluation finished!`)
+                    if (path.basename(p).startsWith('test_') && this.test) {
+                        console.log(`[INFO]  test: parsing .js file: ${'.' + path.sep + p}`)
+                        var content = fs.readFileSync('.' + path.sep + p, 'utf8')
+                        try {
+                            console.log(`[INFO]  testing: evaluating!`)
+                            eval(content)
+                            console.log(`[INFO]  test: script js evaluation finished!`)
 
-                    } catch (error) {
-                        console.log(`[ERROR] compile: error running: ${'.' + path.sep + p}`)
-                        console.log(error)
+                        } catch (error) {
+                            console.log(`[ERROR] testing: error running: ${'.' + path.sep + p}`)
+                            console.log(error)
 
+                        }
+                    } else {
+                        console.log(`[INFO]  compile: parsing .js file: ${'.' + path.sep + p}`)
+                        var content = fs.readFileSync('.' + path.sep + p, 'utf8')
+                        try {
+                            console.log(`[INFO]  compile: evaluating!`)
+                            eval(content)
+                            console.log(`[INFO]  compile: script js evaluation finished!`)
+
+                        } catch (error) {
+                            console.log(`[ERROR] compile: error running: ${'.' + path.sep + p}`)
+                            console.log(error)
+
+                        }
                     }
 
                 }
@@ -146,7 +163,8 @@ function getDirectoriesRecursive(srcpath) {
     return [srcpath, ...flatten(getDirectories(srcpath).map(getDirectoriesRecursive))];
 }
 
-function init() {
+function init(test) {
+    this.test = test
     copyApp2Build()
     getDirectoriesRecursive('./src')
 
@@ -156,9 +174,22 @@ function init() {
         eval(this.after)
 
     }
-    createJsFiles()
+    if (this.test) {
+        if (app.testsFailed.length > 0) {
+            console.log(`[ERROR] test: completed with ${app.testsFailed.length} error(s)!`)
+            let index = 1
+            app.testsFailed.forEach(error => {
+                console.log(`${index}: ${error}`)
+                index = index + 1
+            });
+        } else {
+            console.log('[INFO]  test: completed successfully!')
+        }
+    } else {
+        createJsFiles()
 
-    console.log(`[INFO]  compile: init compile method completed!`)
+        console.log(`[INFO]  compile: init compile method completed!`)
+    }
 
 }
 
