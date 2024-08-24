@@ -1,9 +1,9 @@
 (function(app){
 
-    eval(app.call('tmpl?hello.js'))
+    eval(app.get('tmpl?hello.js'))
 
-    console.log(app.call('tmpl?hello.txt'))
+    console.log(app.get('tmpl?hello.txt'))
 
-    console.log(app.call('config?hello.json'))
+    console.log(app.get('config?hello.json'))
 
 })(app)

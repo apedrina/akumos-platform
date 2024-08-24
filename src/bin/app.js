@@ -179,7 +179,6 @@ class App {
         let data_type
         let data_method = ''
         let data_event = ''
-        let data_member = ''
         let data_template = ''
         for (var i = attrs.length - 1; i >= 0; i--) {
             if (attrs[i].name === 'data-name') {
@@ -192,9 +191,6 @@ class App {
                 data_method = attrs[i].value
                 let data = attrs[i].name.split('-')
                 data_event = data[2]
-
-            } else if (attrs[i].name === 'data-member') {
-                data_member = attrs[i].value;
 
             } else if (attrs[i].name === 'data-template') {
                 data_template = attrs[i].value;
@@ -239,24 +235,13 @@ class App {
                 e.appendChild(s)
             })
 
-        } else if (data_type === 'boolean') {
-            if (obj[data_member]) {
-                e.setAttribute('style', 'display:block')
-            } else {
-                e.setAttribute('style', 'display:none')
-            }
-
-        }
-
+        } 
         obj.elements.set(data_name, e)
         return e
     }
 
     assert(v, msg) {
-        if (v) {
-            console.log(`[INFO]  test: ${msg}`)
-            
-        } else {
+        if (!v) {
             let errorMsg = `[ERROR]  test: ${msg}`
             console.log(errorMsg);
             this.testsFailed.push(errorMsg)
@@ -265,9 +250,6 @@ class App {
     }
 
     get(v) {
-        if (!v.startsWith('libs')) {
-            return
-        }
         let i = v.indexOf('?')
         let p = v.substring(0, i).replaceAll('.', path.sep)
         let f = v.substring(i + 1)
@@ -277,10 +259,8 @@ class App {
         return fs.readFileSync(process.cwd() + path.sep + p).toString()
 
     }
+
     js(v, app, params) {
-        if (!v.startsWith('libs')) {
-            return
-        }
         let i = v.indexOf('?')
 
         let p = v.substring(0, i).replaceAll('.', path.sep)
@@ -291,19 +271,12 @@ class App {
         return eval(fs.readFileSync('.' + path.sep + p).toString())
 
     }
-    call(v) {
-        if (!v.startsWith('config') && !v.startsWith('tmpl')) {
-            return
-        }
-        let i = v.indexOf('?')
-        let p = v.substring(0, i).replaceAll('.', path.sep)
-        let f = v.substring(i + 1)
 
-        p = p + path.sep + f
-
-        return fs.readFileSync(process.cwd() + path.sep + p).toString()
+    reg(k, v) {
+        this.regsScr.set(k, v)
 
     }
+
     create(t) {
         try {
             if (t.template == null) {
@@ -347,6 +320,7 @@ class App {
         }
 
     }
+
     replace(m, ...params) {
         try {
             const filters = [...params.values()]

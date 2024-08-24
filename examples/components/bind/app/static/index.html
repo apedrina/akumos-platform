@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-br" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Akumos Platform - Web.</title>
+
+    <!-- Principal CSS do Bootstrap -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/highlight-in-textarea.css" rel="stylesheet">
+   
+    <script src="dist/js/akumos.js"></script>
+    
+
+
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <header>
+        <!-- Navbar fixa -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Akumos Platform</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><span class="sr-only">dashboard</span></a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <div class="modal fade" id="akumosModal" tabindex="-1" role="dialog" aria-labelledby="akumosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="akumosModalLabel">Console Results</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="compileResult">
+                    Wait the compiling process...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- akumos-main main element -->
+    <main role="main" class="flex-shrink-0" id="akumos-main">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-sm-7">
+                    <script>app.show('index')</script>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">Akumos Server.</span>
+        </div>
+    </footer>
+
+    <!-- Principal JavaScript do Bootstrap
+================================================== -->
+    <!-- Foi colocado no final para a página carregar mais rápido -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

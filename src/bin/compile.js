@@ -175,6 +175,7 @@ function init(test) {
 
     }
     if (this.test) {
+        console.log('[INFO]  ======= Tests Report =======')
         if (app.testsFailed.length > 0) {
             console.log(`[ERROR] test: completed with ${app.testsFailed.length} error(s)!`)
             let index = 1
@@ -215,7 +216,7 @@ function createJsFiles() {
     akumos_js = akumos_js.replaceAll('{{regsScr}}', regsScr)
 
     fs.mkdirSync(process.cwd() + path.sep + 'build/app/static/dist/js', { recursive: true })
-    fs.writeFileSync(process.cwd() + path.sep + 'build/app/static/dist/js/akumos2.js', akumos_js, 'utf8')
+    fs.writeFileSync(process.cwd() + path.sep + 'build/app/static/dist/js/akumos.js', akumos_js, 'utf8')
 }
 
 let app_js = `
@@ -280,6 +281,16 @@ class App {
     set n(v) { this.n = v }
     set regsScr(v) { this.regsScr = v }
     set objs(v) { this.objs = v }
+
+    get(v) {
+       return this.regsScr.get(v)
+
+    }
+
+    js(v, app, params) {
+        return eval(this.regsScr.get(v))
+
+    }
 
     uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'

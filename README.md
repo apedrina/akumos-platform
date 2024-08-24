@@ -67,7 +67,7 @@ hello-world
 ```
 - app: folder that contains app's file, these file are the target of all scripts output.
 - build: the compile result output will be saved inside this folder.
-- config: here you should put yours .json files to be called like it: app.call('namespace')
+- config: here you should put yours .json files to be called like it: app.get('namespace')
 - libs: here should be located the .js scripts files to be called like it: app.js('namespace', 'params')
 - scr: source code folder
 - tmpl: template files, could be any extension

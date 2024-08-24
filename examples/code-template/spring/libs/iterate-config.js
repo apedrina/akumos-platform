@@ -3,7 +3,7 @@
         let t = new Template()
         t.name = params[k].name
         t.path = params[k].path
-        t.template = app.call(params[k].template)
+        t.template = app.get(params[k].template)
 
         t.addConfig((params[k].map))
         t.bind()
